@@ -1,0 +1,34 @@
+server:
+  hosts:
+  # Your machine IPs, here we use 4 machines for example
+    - xx.xx.xx.xx
+    
+  worker_base_port: 18888
+  proxy_port: 23456
+
+reward:
+  backbone: qwen3vl_vllm
+  model_name_or_path: /path/to/ckpt
+  lora_path: 
+  score_range: 25
+  tensor_parallel_size: 1
+  max_num_seqs: 64
+  max_model_len: 2560
+  max_num_batched_tokens: 98304
+  num_pass: 1
+  seed: 42
+  temperature: 0
+
+    # Reward calculation hyperparameters
+  # Aggregation strategy switch
+  use_min_geometric_mean: false  # If true, use sqrt(min(SC_raw) * min(PQ_raw)); if false, use weighted geometric mean
+  
+  # Weighted geometric mean parameters (used when use_min_geometric_mean=false)
+  # SC_score = (w1 * score1 + w2 * score2) / 2.5, where w1 + w2 = 1
+  w1: 0.6  # SC dimension: instruction following weight
+  w2: 0.4  # SC dimension: consistency weight
+  # PQ_score = (w3 * naturalness + w4 * artifacts) / 2.5, where w3 + w4 = 1
+  w3: 0.50  # PQ dimension: naturalness weight
+  w4: 0.50  # PQ dimension: artifact-free weight
+  # O_score = SC_score^a * PQ_score^(1-a), where a ∈ [0, 1]
+  a: 0.80   # Geometric mean exponent (0.5 = equal weight between SC and PQ)

@@ -1,0 +1,14 @@
+torch==2.8.0
+numpy==2.2.6
+vllm==0.11.0
+transformers==4.57.0
+qwen-vl-utils==0.0.14
+Pillow==10.0.0
+datasets==3.6.0
+tqdm==4.67.1
+PyYAML==6.0.3
+requests==2.32.5
+flask==3.1.2
+peft==0.17.1
+python-dotenv==1.1.1
+openai==2.3.0

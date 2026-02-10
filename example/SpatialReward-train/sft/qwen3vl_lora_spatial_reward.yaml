@@ -1,0 +1,44 @@
+### Model
+model_name_or_path: Qwen/Qwen3-VL-8B-Instruct
+image_max_pixels: 262144
+video_max_pixels: 16384
+trust_remote_code: true
+
+### Method
+stage: sft
+do_train: true
+finetuning_type: lora
+lora_rank: 32                    
+lora_target: all
+lora_alpha: 64                  
+lora_dropout: 0.05
+
+### Dataset
+dataset: spatial_reward    
+template: qwen3_vl
+cutoff_len: 8192                 
+overwrite_cache: false
+preprocessing_num_workers: 192
+dataloader_num_workers: 48
+
+### Output
+output_dir: saves/qwen3vl-8b/lora/spatial_reward
+logging_dir: logs/qwen3vl-8b/lora/spatial_reward
+logging_first_step: true
+logging_steps: 10
+save_steps: 1040
+plot_loss: true
+overwrite_output_dir: false
+save_only_model: false
+
+### Train
+per_device_train_batch_size: 8   
+gradient_accumulation_steps: 2   
+learning_rate: 1.0e-4            
+num_train_epochs: 10.0            
+lr_scheduler_type: cosine        
+warmup_ratio: 0.1                
+optim: adamw_torch              
+bf16: true                       
+ddp_timeout: 180000000
+resume_from_checkpoint: true
