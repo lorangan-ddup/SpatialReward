@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="title"
+    content="SpatialReward: Bridging the Perception Gap in Online RL for Image Editing via Explicit Spatial Reasoning">
+  <meta name="description"
+    content="SpatialReward bridges the perception gap in online RL for image editing via explicit spatial reasoning, achieving state-of-the-art performance.">
+  <meta name="keywords"
+    content="Reinforcement Learning, Image Editing, Spatial Reasoning, Reward Modeling, Computer Vision, AI">
+  <meta name="author"
+    content="Yancheng Long, Yankai Yang, Hongyang Wei, Wei Chen, Tianke Zhang, Haonan Fan, Changyi Liu, Kaiyu Jiang, Jiankang Chen, Kaiyu Tang, Bin Wen, Fan Yang, Tingting Gao, Han Li, Shuo Yang">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="SpatialReward">
+  <meta property="og:title"
+    content="SpatialReward: Bridging the Perception Gap in Online RL for Image Editing via Explicit Spatial Reasoning">
+  <meta property="og:description"
+    content="SpatialReward bridges the perception gap in online RL for image editing via explicit spatial reasoning, achieving state-of-the-art performance.">
+  <meta property="og:url" content="https://github.com/Tiger-AI-Lab/SpatialReward">
+  <meta property="og:image" content="static/images/attention_visualization.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SpatialReward">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title"
+    content="SpatialReward: Bridging the Perception Gap in Online RL for Image Editing via Explicit Spatial Reasoning">
+  <meta name="twitter:description"
+    content="SpatialReward bridges the perception gap in online RL for image editing via explicit spatial reasoning, achieving state-of-the-art performance.">
+  <meta name="twitter:image" content="static/images/attention_visualization.png">
+
+  <title>SpatialReward: Bridging the Perception Gap in Online RL for Image Editing via Explicit Spatial Reasoning
+  </title>
+
+  <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/954/954591.png">
+  <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/954/954591.png">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">SpatialReward: Bridging the Perception Gap in Online RL for Image
+              Editing via Explicit Spatial Reasoning</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                Yancheng Long<sup>1*</sup>, Yankai Yang<sup>1*</sup>, Hongyang Wei<sup>2</sup>, Wei Chen<sup>3</sup>,
+                Tianke Zhang<sup>4</sup>, Haonan Fan<sup>4</sup>, Changyi Liu<sup>4</sup>, 
+                Kaiyu Jiang<sup>4</sup>, Jiankang Chen<sup>4</sup>, Kaiyu Tang<sup>4</sup>, Bin Wen<sup>4†✉</sup>, Fan
+                Yang<sup>4</sup>, Tingting Gao<sup>4</sup>, Han Li<sup>4</sup>, Shuo Yang<sup>1✉</sup>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Harbin Institute of Technology, Shenzhen <sup>2</sup>Tsinghua
+                University <sup>3</sup>HKUST <sup>4</sup>Kuaishou Technology</span>
+              <span class="eql-cntrb"><small><br><sup>*</sup> Equal contribution <sup>†</sup> Project leader
+                  <sup>✉</sup> Corresponding authors</small></span>
+            </div>
+
+            <div class="column has-text-centered mb-0">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2602.07458" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="https://github.com/Kwai-Keye/SpatialReward" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="https://huggingface.co/Kwai-Keye/SpatialReward" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <p>🤗</p>
+                    </span>
+                    <span>Model (Soon)</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="https://huggingface.co/datasets/Kwai-Keye/SpatialReward-Data" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-database"></i>
+                    </span>
+                    <span>Dataset (Soon)</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://huggingface.co/datasets/Kwai-Keye/MERBench" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-database"></i>
+                    </span>
+                    <span>Benchmark (Soon)</span>
+                  </a>
+                </span>
+              </div>
+              <div class="is-centered has-text-centered">
+                <img src="static/images/logo.png" style="width: 80%; margin-top: 20px;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Abstract -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Online Reinforcement Learning (RL) offers a promising avenue for complex image editing but is currently
+              constrained by the scarcity of reliable and fine-grained reward signals. Existing evaluators frequently
+              struggle with a critical perception gap we term <strong>“Attention Collapse,”</strong> where models
+              neglect cross-image comparisons and fail to capture fine-grained details, resulting in inaccurate
+              perception and miscalibrated scores.
+              To address these limitations, we propose <strong>SpatialReward</strong>, a reward model that enforces
+              precise verification via explicit spatial reasoning. By anchoring reasoning to predicted edit regions,
+              SpatialReward grounds semantic judgments in pixel-level evidence, significantly enhancing evaluative
+              accuracy. Trained on a curated <strong>260k spatial-aware dataset</strong>, our model achieves
+              state-of-the-art performance on MMRB2 and EditReward-Bench, and outperforms proprietary evaluators on our
+              proposed <strong>MultiEditReward-Bench</strong>. Furthermore, SpatialReward serves as a robust signal in
+              online RL, boosting OmniGen2 by <strong>+0.90</strong> on GEdit-Bench—surpassing the leading
+              discriminative model and doubling the gain of GPT-4o (+0.45). These results demonstrate that spatial
+              reasoning is essential for unlocking effective alignment in image editing.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Overview</h2>
+          <div class="content has-text-justified">
+            <p>
+              Existing reward models suffer from "Attention Collapse," failing to attend to the source image during
+              evaluation. <strong>SpatialReward</strong> introduces a "Think-with-Boxes" mechanism, predicting edit
+              regions to anchor reasoning and enforce cross-image verification.
+            </p>
+          </div>
+          <img src="static/images/attention_visualization.png" alt="SpatialReward Overview" width="100%">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MERBench -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">MultiEditReward-Bench (MERBench)</h2>
+          <div class="content has-text-justified">
+            <p>
+              We introduce <strong>MultiEditReward-Bench</strong>, a challenging benchmark focusing on multi-turn and
+              complex editing scenarios.
+            </p>
+          </div>
+          <img src="static/images/MERBench_analysis.png" alt="MERBench Analysis" width="100%">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benchmark Results -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Benchmark Results</h2>
+          <div class="content has-text-justified">
+            <p>
+              SpatialReward achieves state-of-the-art performance, outperforming proprietary models on
+              various benchmarks.
+            </p>
+          </div>
+          <img src="static/images/performance_table.png" alt="Performance Table" width="100%" class="mb-5">
+          <img src="static/images/merbench_category_breakdown.png" alt="Category Breakdown" width="50%">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RL Finetuning -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">RL Finetuning Results</h2>
+          <div class="content has-text-justified">
+            <p>
+              Using SpatialReward as a reward signal for Online RL significantly improves the performance of base models
+              like OmniGen2.
+            </p>
+          </div>
+          <div class="columns">
+            <div class="column">
+              <img src="static/images/rl_training_curves.png" alt="Training Curves" width="100%">
+            </div>
+            <div class="column">
+              <img src="static/images/omnigen2_rl_results.png" alt="RL Results" width="75%">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Qualitative Results -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Qualitative Results</h2>
+          <h3 class="title is-4">RL Training Cases</h3>
+          <div id="results-carousel" class="carousel results-carousel">
+            <div class="item">
+              <img src="static/images/rl_cases.png" alt="RL Case 1">
+            </div>
+            <div class="item">
+              <img src="static/images/rl_cases_1.png" alt="RL Case 2">
+            </div>
+            <div class="item">
+              <img src="static/images/rl_cases_2.png" alt="RL Case 3">
+            </div>
+            <div class="item">
+              <img src="static/images/rl_cases_3.png" alt="RL Case 4">
+            </div>
+          </div>
+
+          <h3 class="title is-4 mt-6">Attention Visualization</h3>
+          <p class="mb-4">Spatial supervision optimizes the model's attention distribution, focusing on relevant
+            regions.</p>
+          <img src="static/images/attention_cases.png" alt="Attention Cases" width="100%">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BibTeX -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <div class="bibtex-header">
+        <h2 class="title">BibTeX</h2>
+        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+          <i class="fas fa-copy"></i>
+          <span class="copy-text">Copy</span>
+        </button>
+      </div>
+      <pre id="bibtex-code"><code>@article{long2026spatialreward,
+  title={SpatialReward: Bridging the Perception Gap in Online RL for Image Editing via Explicit Spatial Reasoning},
+  author={Long, Yancheng and Yang, Yankai and Wei, Hongyang and Chen, Wei and Zhang, Tianke and Fan, Haonan and Liu, Changyi and Jiang, Kaiyu and Chen, Jiankang and Tang, Kaiyu and Wen, Bin and Yang, Fan and Gao, Tingting and Li, Han and Yang, Shuo},
+  journal={arXiv preprint arXiv:2602.07458},
+  year={2026}
+}</code></pre>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p>
+          This page was adapted from the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+            target="_blank">Academic Project Page Template</a>.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

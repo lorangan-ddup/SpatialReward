@@ -1,0 +1,5 @@
+images/
+tmp/
+SpatialReward-page/
+__pycache__/
+.DS_Store
