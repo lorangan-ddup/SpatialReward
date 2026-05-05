@@ -5,9 +5,9 @@
 <p align="center">
   <a href="https://lorangan-ddup.github.io/SpatialReward/"><img src="https://img.shields.io/badge/Project%20Page-SpatialReward-yellow" alt="project page"></a>
   <a href="https://arxiv.org/abs/2602.07458"><img src="https://img.shields.io/badge/arXiv-2602.07458-b31b1b.svg" alt="arxiv"></a>
-  <a href="https://huggingface.co/Kwai-Keye/SpatialReward"><img src="https://img.shields.io/badge/SpatialReward-🤗%20TODO-yellow" alt="model"></a>
-  <a href="https://huggingface.co/datasets/Kwai-Keye/SpatialReward-Data"><img src="https://img.shields.io/badge/MER--Bench-🤗%20TODO-yellow" alt="dataset"></a>
-  <a href="https://huggingface.co/datasets/Kwai-Keye/MERBench"><img src="https://img.shields.io/badge/Training--Data-🤗%20TODO-yellow" alt="dataset"></a>
+  <a href="https://huggingface.co/SpatialReward/SpatialReward-8B"><img src="https://img.shields.io/badge/SpatialReward-🤗%20Model-yellow" alt="model"></a>
+  <a href="https://huggingface.co/datasets/SpatialReward/MER-Bench"><img src="https://img.shields.io/badge/MER--Bench-🤗%20Dataset-yellow" alt="dataset"></a>
+  <a href="https://huggingface.co/datasets/SpatialReward/SpatialReward-Train"><img src="https://img.shields.io/badge/Training--Data-🤗%20Dataset-yellow" alt="dataset"></a>
 </p>
 
 <h4 align="center">
@@ -30,15 +30,16 @@
 
 ## 🔥 News
 
+- **2026-05-05**: 🎉 We have open-sourced the **[SpatialReward-8B](https://huggingface.co/SpatialReward/SpatialReward-8B)** model weights, **[MER-Bench](https://huggingface.co/datasets/SpatialReward/MER-Bench)** benchmark, and **[SpatialReward-Train](https://huggingface.co/datasets/SpatialReward/SpatialReward-Train)** (260k spatial-aware training data)!
+- **2026-05-01**: 🎉 **SpatialReward** has been accepted to **ICML 2026**!
 - **2026-02-12**: We have released the **inference code**, **reward server**, and **training configurations**!
-- **2026-02-11**: **SpatialReward** model weights (based on Qwen3-VL-8B), **MERBench**, and **SpatialReward-Data** are currently under internal review and will be released soon.
 - **2026-02-07**: The paper is available on [arXiv](https://arxiv.org/abs/2602.07458).
 
 ## 📌 TODO
 
-- [ ] Release SpatialReward model weights (Qwen3-VL-8B)
-- [ ] Release MERBench dataset
-- [ ] Release SpatialReward-Data (260k spatial-aware training data)
+- [x] Release SpatialReward model weights (Qwen3-VL-8B)
+- [x] Release MERBench dataset
+- [x] Release SpatialReward-Data (260k spatial-aware training data)
 
 ## 🚀 Quick Start
 
@@ -65,7 +66,10 @@ pip install -r requirements.txt
 
 ## 📚 Datasets
 
-The **MER-Bench** evaluation benchmark and **SpatialReward-Data** (260k spatial-aware training dataset) are currently under internal review. We will release them publicly as soon as possible. Please stay tuned!
+| Dataset | Description | Link |
+|---|---|---|
+| **MER-Bench** | MultiEditReward-Bench evaluation benchmark | [🤗 Hub](https://huggingface.co/datasets/SpatialReward/MER-Bench) |
+| **SpatialReward-Train** | 260k spatial-aware training data (SFT + RL) | [🤗 Hub](https://huggingface.co/datasets/SpatialReward/SpatialReward-Train) |
 
 ---
 
