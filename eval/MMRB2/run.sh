@@ -11,7 +11,7 @@ cd $SHELL_FOLDER
 # ============ Configuration ============
 # Data and Model
 DATA_PATH="/path/to/your/data"
-CHECKPOINT_PATH="/path/to/your/checkpoint"
+CHECKPOINT_PATH="SpatialReward/SpatialReward-8B"
 
 # Output directory
 OUTPUT_DIR="results/mmrb2"

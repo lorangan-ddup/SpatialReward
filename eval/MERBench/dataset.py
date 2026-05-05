@@ -6,7 +6,6 @@ from torch.utils.data import Dataset
 from qwen_vl_utils import process_vision_info
 from PIL import Image
 from tqdm import tqdm
-from concurrent.futures import ThreadPoolExecutor, as_completed
 
 
 # ============ Prompts (Score range: 25, with edit region, interleaved) ============
@@ -102,87 +101,35 @@ class MultiEditRewardBenchDataset(Dataset):
         self.weighted_power_params = weighted_power_params if weighted_power_params else [0.5, 0.5, 0.5, 0.5, 0.5]
         
         print(f"Score aggregation: {score_aggregation}")
-        
-        # Load benchmark data - support single file or directory with multiple files
-        print(f"Loading MultiEditRewardBench from {data_path}...")
-        
-        raw_data = []
-        if os.path.isdir(data_path):
-            # Load all pair files from directory
-            for pair_file in ["2pair.json", "3pair.json", "4pair.json"]:
-                file_path = os.path.join(data_path, pair_file)
-                if os.path.exists(file_path):
-                    with open(file_path, 'r', encoding='utf-8') as f:
-                        file_data = json.load(f)
-                        raw_data.extend(file_data)
-                        print(f"  Loaded {len(file_data)} samples from {pair_file}")
-        else:
-            # Single file
-            with open(data_path, 'r', encoding='utf-8') as f:
-                raw_data = json.load(f)
-        
-        print(f"Total loaded: {len(raw_data)} samples")
-        
+
         # Load cache if exists
         self.cache_dict = self.load_cache(output_path)
-        
-        # Process dataset
-        self.data = []
         seen_keys = set(self.cache_dict.keys())
-        
-        def process_sample(sample):
-            """Process a single sample"""
-            pair_id = sample["pair_id"]
-            
-            if pair_id in seen_keys:
-                return None
-            
-            instruction = sample["instruction"]
-            original_image_path = sample["original_image"]
-            edited_images = sample["edited_images"]
-            num_images = len(edited_images)
-            
-            # Detect pair type from pair_id or num_images
-            if "2pair" in pair_id:
-                pair_type = 2
-            elif "3pair" in pair_id:
-                pair_type = 3
-            elif "4pair" in pair_id:
-                pair_type = 4
-            else:
-                pair_type = num_images
-            
-            # Load images
-            try:
-                original_image = Image.open(original_image_path).convert("RGB")
-                loaded_edited_images = []
-                for ed_info in edited_images:
-                    img = Image.open(ed_info["edited_image"]).convert("RGB")
-                    loaded_edited_images.append(img)
-            except Exception as e:
-                print(f"Error loading images for {pair_id}: {e}")
-                return None
-            
-            gt_qualities = [ed["quality"] for ed in edited_images]
-            
-            return {
-                "pair_id": pair_id,
-                "pair_type": pair_type,
-                "instruction": instruction,
-                "original_image": original_image,
-                "edited_images": loaded_edited_images,
-                "label": sample.get("label", ""),
-                "sample_id": sample.get("sample_id", ""),
-                "gt_qualities": gt_qualities,
-            }
-        
-        # Process samples in parallel
-        print("Processing benchmark data...")
-        with ThreadPoolExecutor(max_workers=8) as executor:
-            futures = [executor.submit(process_sample, sample) for sample in raw_data]
-            for future in tqdm(as_completed(futures), total=len(futures), desc="Loading data"):
-                item = future.result()
-                if item is not None:
+
+        # Load from HuggingFace (splits: 2pair / 3pair / 4pair)
+        from datasets import load_dataset as hf_load_dataset
+        print(f"Loading MultiEditRewardBench from HuggingFace: {data_path}...")
+        hf_ds = hf_load_dataset(data_path)
+
+        self.data = []
+        for split_name, split_ds in hf_ds.items():
+            pair_type = int(split_name.replace("pair", ""))
+            print(f"  Loading split '{split_name}': {len(split_ds)} samples")
+            for sample in tqdm(split_ds, desc=split_name):
+                pair_id = sample["pair_id"]
+                if pair_id in seen_keys:
+                    continue
+                num_images = len(sample["edited_images"])
+                self.data.append({
+                    "pair_id":        pair_id,
+                    "pair_type":      pair_type,
+                    "instruction":    sample["instruction"],
+                    "original_image": sample["original_image"].convert("RGB"),
+                    "edited_images":  [img.convert("RGB") for img in sample["edited_images"]],
+                    "label":          sample.get("label", ""),
+                    "sample_id":      sample.get("sample_id", ""),
+                    "gt_qualities":   list(range(num_images, 0, -1)),  # first is best
+                })
                     self.data.append(item)
         
         print(f"Total samples to process: {len(self.data)} (cached: {len(self.cache_dict)})")

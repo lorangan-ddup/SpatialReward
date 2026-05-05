@@ -11,8 +11,10 @@ cd $SHELL_FOLDER
 
 # ============ Configuration ============
 # Data and Model
-DATA_PATH="/path/to/your/data"
-CHECKPOINT_PATH="/path/to/your/checkpoint"
+# Local path:  DATA_PATH="/path/to/MERBench"
+# HuggingFace: DATA_PATH="SpatialReward/MER-Bench"
+DATA_PATH="SpatialReward/MER-Bench"
+CHECKPOINT_PATH="SpatialReward/SpatialReward-8B"
 
 # Output directory 
 OUTPUT_DIR="results/merbench"
